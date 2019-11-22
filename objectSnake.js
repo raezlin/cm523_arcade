@@ -17,10 +17,10 @@ function Snake() {
         // });
 
         for (let i = 0; i<this.tail.length;i++){
-            ctx.fillRect(this.tail[i].x, this.tail[i].y, scl, scl/2);
+            ctx.fillRect(this.tail[i].x, this.tail[i].y, scl, scl);
         }
 
-        ctx.fillRect(this.x, this.y, scl, scl/2); //why height needs to be divided by 2
+        ctx.fillRect(this.x, this.y, scl, scl); //why height needs to be divided by 2
 
     }
 
@@ -38,18 +38,22 @@ function Snake() {
         this.y += this.ySpeed;
 
 
-        //add boundary to snake activity
+        //add boundary to snake activity, gameover
         if (this.x > canvas.width){
             this.x = 0;
+            this.checkCollisionCanvas();
         }
         if(this.x < 0){
             this.x = canvas.width;
+            this.checkCollisionCanvas();
         }
         if(this.y > canvas.height){
             this.y = 0;
+            this.checkCollisionCanvas();
         }
         if(this.y < 0){
             this.y = canvas.height;
+            this.checkCollisionCanvas();
         }
 
 
@@ -59,11 +63,11 @@ function Snake() {
         switch(direction){
             case 'Up':
                 this.xSpeed = 0;
-                this.ySpeed = -scl/2;
+                this.ySpeed = -scl;
                 break;
             case 'Down':
                 this.xSpeed = 0;
-                this.ySpeed = scl/2;
+                this.ySpeed = scl;
                 break;
             case 'Left':
                 this.xSpeed = -scl;
@@ -78,26 +82,11 @@ function Snake() {
     this.checkCollisionCanvas = function(){
         // console.log('y is : ${this.y}');
         // console.log('x is : ${this.x}');
-        if (this.x > canvas.width){
-            alert("GAME OVER");
-                document.location.reload();
-                clearInterval(interval);
-        }
-        if(this.x < 0){
-            alert("GAME OVER");
-                document.location.reload();
-                clearInterval(interval);
-        }
-        if(this.y > canvas.height){
-            alert("GAME OVER");
-            document.location.reload();
-            clearInterval(interval);
-        }
-        if(this.y < 0){
-            alert("GAME OVER");
-                document.location.reload();
-                clearInterval(interval);
-    }
+       
+        alert("GAME OVER");
+        document.location.reload();
+        clearInterval(interval);
+    
 } 
     this.checkCollision = function() {
         

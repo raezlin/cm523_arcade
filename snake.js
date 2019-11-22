@@ -8,7 +8,7 @@ const WIDTH = 500;
 const HEIGHT = 500;
 canvas.height = HEIGHT;
 canvas.width = WIDTH;
-const scl = 15; //10 per unit of speed
+const scl = 20; //10 per unit of speed
 const rows = canvas.height / scl;
 const col = canvas.width / scl;
 
@@ -38,20 +38,18 @@ console.log(canvas.width);
 
         snake.update();
         snake.draw();
+        // fruit.draw();
+
 
         if (snake.eat(fruit)){
             fruit.pickLocation();
+            fruit.draw();
         }
 
         if (snake.checkCollision ()){
             console.log('colliding with body');
         }
 
-        if (snake.checkCollisionCanvas()){
-            console.log('colliding with wall');
-        }
-
-        
 
     }, 120)
 }()); //why () over the function
