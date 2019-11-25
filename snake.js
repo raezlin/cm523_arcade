@@ -14,7 +14,6 @@ const col = canvas.width / scl;
 
 var snake;
 var fruit;
-
 var score;
 
 
@@ -22,28 +21,27 @@ var score;
 (function setup() {
     snake = new Snake();
     fruit = new Fruit();
-    // score = new Score();
-console.log(canvas.height);
-console.log(canvas.width);
+    score = new Score();
+
     fruit.pickLocation();
-
-
     snake.draw();
+    score.draw();
 
     window.setInterval(() => {
         // score.update();
         document.querySelector('.score').innerText = snake.total;
         ctx.clearRect(0,0, canvas.width, canvas.height);
         fruit.draw();
-
         snake.update();
         snake.draw();
+        score.draw();
         // fruit.draw();
 
 
         if (snake.eat(fruit)){
             fruit.pickLocation();
             fruit.draw();
+            score.draw();
         }
 
         if (snake.checkCollision ()){
