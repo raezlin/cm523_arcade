@@ -8,3 +8,5 @@ features:
 progress:
 * updated fruit color
 * fixed canvas dimension
+* draft of homepage art
+* activate snake game when walking over
