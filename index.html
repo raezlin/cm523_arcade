@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=500, initial-scale=0.7">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ARCADE :: LANDING</title> 
 </head>
 <body onload ='setup()'>
+   
     <canvas id = "screen">
         <style>
             #screen{
@@ -14,10 +16,33 @@
                 /* background-color: beige; */
 
                 display:block;
+                /* margin-top:2em; */
                 margin:0 auto;
             }
         </style>
     </canvas>
+
+    <!-- /*  controllers, can add to all pages */ -->
+    
+    <div class='buttons' id='buttons' >
+        <button id = 'upbtn'>up</button>
+        <button id = 'downbtn'>down</button>
+        <button id = 'leftbtn'>left</button>
+        <button id = 'rightbtn'>right</button>
+        <style>
+            .buttons{
+                padding: 2em;
+                display:block;
+                text-align: center;
+                margin: 0 auto;
+            }
+            #upbtn{
+                display:block;
+                text-align: center;
+                margin: 0 auto;
+            }
+        </style>
+    </div>
     <script type = "text/javascript" src="homescript.js"></script>
 </body>
 </html>

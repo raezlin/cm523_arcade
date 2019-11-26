@@ -1,6 +1,3 @@
-// const canvas = document.getElementById('screen');
-// const ctx = canvas.getContext('2d');
-
 const WIDTH = 450;
 const HEIGHT = 450;
 // canvas.height = HEIGHT;
@@ -8,13 +5,6 @@ const HEIGHT = 450;
 
 const scl = 10;
 
-
-// snake coordinate
-// const snakeXmax = 110;
-// WAM
-// const wamXmin = 120;
-// const wamXmax = 200;
-//frames
 const gamesY = 145;
 const snakeCoor = {xmin:0, xmax:110};
 const wamCoor = {xmin:120, xmax:200};
@@ -23,44 +13,88 @@ const framesY = 105;
 const frame1 = {xmin:200, xmax:290};
 const frame2 = {xmin: 300, xmax:360};
 const frame3 = {xmin: 380, xmax:435};
+var upBtn = document.getElementById('upbtn');
+        var downBtn = document.getElementById('downbtn');
+        var leftBtn = document.getElementById('leftbtn');
+        var rightBtn = document.getElementById('rightbtn');
 
+// var imgObj = new Image();
 
+// imgObj.src = 'gameroom.jpg';
 
 
 var hero;
+var bgImg;
+
 
 function setup() {
-    document.body.style.backgroundImage = "url('gameroom.jpg')";
-    document.body.style.backgroundRepeat = "no-repeat";
-    document.body.style.backgroundPosition = "center";
-    document.body.style.backgroundSize = '450px 450px';
+    // document.body.style.backgroundImage = "url('gameroom.jpg')";
+    // document.body.style.backgroundRepeat = "no-repeat";
+    // document.body.style.backgroundPosition = "center";
+    // document.body.style.backgroundSize = '450px 450px';
+ 
+    // document.body.style.backgroundSize = `${WIDTH} ${HEIGHT}`;         DOES NOT WORK, EXCEEDED CANVAS SIZE
+   bgImg = new component("gameroom.jpg",0,0,'background');
     gameArea.start();
+    
 
     hero = new Hero();
+    
+
+
+
 }
 
 var gameArea = {
     canvas : document.getElementById('screen'),
     start : function(){
+
+        
         this.canvas.width = WIDTH;
         this.canvas.height = HEIGHT;
-        console.log(`this canvas width is ${this.canvas.width}`);
-        console.log(`this canvas height is ${this.canvas.height}`);
-        
 
         this.ctx = this.canvas.getContext('2d');
+
+        // imgObj.onload = function(){
+        //     ctx.drawImage(imgObj,0,0);
+        // }
         document.body.insertBefore(this.canvas, document.body.childNodes[0]); //what is this for?
         this.interval = setInterval(updateScreen, 20);
+        // this.direction;
+
+       this.dir = '';
+       upBtn.addEventListener('click', function(){
+
+        // hero.ySpeed = -1;
+        this.dir = 'Up';
         
+        });
+
+        downBtn.addEventListener('click', function(){
+
+            // hero.ySpeed = 1;
+            this.dir = 'Down';
+       
+        });
+        leftBtn.addEventListener('click', function(){
+            // hero.xSpeed = -1;
+            this.dir = 'Left';
+        } );
+        rightBtn.addEventListener('click', function(){
+
+            // hero.xSpeed = 1;
+            this.dir = 'Right';
+    
+        });
+
+
         window.addEventListener('keydown',function(event){
             gameArea.keys = (gameArea.keys || []);
-            // gameArea.keys = [];
             gameArea.keys[event.keyCode] = (event.type == 'keydown');
         })
 
         window.addEventListener('keyup',function(event){
             gameArea.keys = (gameArea.keys || []);
-            // gameArea.keys = [];
             gameArea.keys[event.keyCode] = (event.type == 'keydown');
         })
     },
@@ -75,8 +109,8 @@ function Hero(){
 
 
     //for now, place holder rect
-    this.width = 35;
-    this.height = 80;
+    this.width = 140/2;
+    this.height = 240/2;
     this.xSpeed = 0;
     this.ySpeed = 0;
 
@@ -84,16 +118,26 @@ function Hero(){
     this.x = 10;
     this.y = HEIGHT/2;
 
+    this.image = new Image();
+    this.image.src = 'figuretest.png';
+
 
     this.update = function() {
         ctx = gameArea.ctx ;
-        ctx.fillStyle = "red";
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        // ctx.fillStyle = "red";
+        // ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
 
     this.newPos = function() {
         if(this.y <= gamesY && this.x <= snakeCoor.xmax){
-            activateEvents('snake.html');
+            this.y = gamesY;
+            activateEvents('./snake.html');
+        }
+
+        if(this.y <= gamesY && (this.x >= wamCoor.xmin && this.x <= wamCoor.xmax)){
+            this.y = gamesY;
+            activateEvents('./mole.html');
         }
         if (this.x > WIDTH){
             console.log("further than width")
@@ -119,7 +163,7 @@ function Hero(){
 
         this.x += this.xSpeed * scl;
         this.y += this.ySpeed * scl;
-        console.log(`hero's coordinate x - ${this.x} y - ${this.y}`);
+        // console.log(`hero's coordinate x - ${this.x} y - ${this.y}`);
     }
 
     /*
@@ -138,74 +182,58 @@ function Hero(){
    
 }
 
+
+
 function updateScreen(){
     gameArea.clear();
-    
+    // imgObj.onload = function(){
+    //     ctx.drawImage(imgObj,0,0);
+    // }
     hero.xSpeed = 0;
     hero.ySpeed = 0;
-    if (gameArea.keys && gameArea.keys[37]) {hero.xSpeed = -1;}
-    if (gameArea.keys && gameArea.keys[38]) {hero.ySpeed = -1;}
-    if (gameArea.keys && gameArea.keys[39]) {hero.xSpeed = 1;}
-    if (gameArea.keys && gameArea.keys[40]) {hero.ySpeed = 1;}
-
-    hero.newPos();
+    //was &&, testing ||
+    // console.log(gameArea.keys);
     
+    
+    
+    if ((gameArea.keys && gameArea.keys[37]) || gameArea.dir == "Left")
+    {hero.xSpeed = -1;}
+    if ((gameArea.keys && gameArea.keys[38] ) || gameArea.dir == "Up" )
+     {hero.ySpeed = -1;}
+    if ((gameArea.keys && gameArea.keys[39] ) || gameArea.dir == "Right")
+     {hero.xSpeed = 1;}
+    if ((gameArea.keys && gameArea.keys[40] ) || gameArea.dir == "Down")
+    {hero.ySpeed = 1;}
+    
+       
+    bgImg.update();
+    hero.newPos();
     hero.update();
     // hero.activateEvents();
     
+}
+function component(address, x, y, type) {
+    // this.type = type;
+    // if (type == "image") {
+         
+    //     this.image.src = 'gameroom.jpg';
+    // }
 
+    
+    this.image = new Image();
+    this.image.src = 'gameroom.jpg'
+    this.width = WIDTH;
+    this.height = HEIGHT;   
+    this.x = x;
+    this.y = y;    
+    this.update = function() {
+        ctx = gameArea.ctx;
+        // console.log('update background');
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    }
+     
 }
 
 
 
-// function Hero() {
-//     this.x = WIDTH/2;
-//     this.y = HEIGHT/2;
-//     this.xSpeed = 0;
-//     this.ySpeed = 0;
-//     // replace with image later
-
-//     this.draw = function(){
-//         ctx.fillStyle = "#00ff";
-//         ctx.fillReact(this.x, this.y, scl,scl);
-//     }
-
-//     this.walkDirection = function(direction){
-//         switch(direction){
-//             case 'Up':
-//                 // this.x = 0;
-//                 this.y += -scl;
-//                 break;
-//             case 'Down':
-//                 // this.x = 0;
-//                 this.y += scl;
-//                 break;
-//             case 'Left':
-//                 this.x += -scl;
-//                 // this.y = 0;
-//                 break;
-//             case 'Right':
-//                 this.x += scl;
-//                 // this.ySpeed = 0;
-//                 break;
-//         }
-//     }
-// }
-
-// (function setup() {
-
-//     hero = new Hero();
-//     hero.draw;
-
-//     window.setInterval(() => {
-//         // score.update();
-        
-//         ctx.clearRect(0,0, canvas.width, canvas.height);
-//         hero.draw;
-
-
-
-//     }, 120)
-    
-// })
 
