@@ -8,5 +8,6 @@ features:
 progress:
 * updated fruit color
 * fixed canvas dimension
-* draft of homepage art
-* activate snake game when walking over
+* activate snake and whack a mole game when walking over
+* added draft of hero and background
+* added direction buttons for mobile users, but they are not working yet
