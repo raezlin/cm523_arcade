@@ -10,4 +10,4 @@ progress:
 * fixed canvas dimension
 * activate snake and whack a mole game when walking over
 * added draft of hero and background
-* added direction buttons for mobile users, but they are not working yet
+* added direction buttons for mobile users, but the current ones are not able to activate events, and each step is only moving one pixel
