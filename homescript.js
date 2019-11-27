@@ -67,6 +67,7 @@ var gameArea = {
 
         // hero.ySpeed = -1;
         this.dir = 'Up';
+        direction('Up');
         
         });
 
@@ -74,18 +75,22 @@ var gameArea = {
 
             // hero.ySpeed = 1;
             this.dir = 'Down';
+            direction('Down');
        
         });
         leftBtn.addEventListener('click', function(){
             // hero.xSpeed = -1;
             this.dir = 'Left';
+            direction('Left');
         } );
         rightBtn.addEventListener('click', function(){
 
             // hero.xSpeed = 1;
             this.dir = 'Right';
+            direction('Right');
     
         });
+        console.log (`dir is : ${this.dir}`); //QUESTION
 
 
         window.addEventListener('keydown',function(event){
@@ -130,7 +135,7 @@ function Hero(){
     }
 
     this.newPos = function() {
-        if(this.y <= gamesY && this.x <= snakeCoor.xmax){
+        if(this.y <= gamesY && this.x <= snakeCoor.xmax ){
             this.y = gamesY;
             activateEvents('./snake.html');
         }
@@ -173,13 +178,17 @@ function Hero(){
        
            window.addEventListener('keydown', function(evt){
             const upkey = evt.key.replace('Arrow','');
-            if (upkey == "Up"){
+            if (upkey == "Up" || gameArea.dir == "Up"){
                 // window.location.pathname = '';
                 window.location = address;
             }
            })
        }
    
+}
+function direction(dir){
+    gameArea.dir = dir;
+    console.log(gameArea.dir);
 }
 
 
@@ -197,13 +206,18 @@ function updateScreen(){
     
     
     if ((gameArea.keys && gameArea.keys[37]) || gameArea.dir == "Left")
-    {hero.xSpeed = -1;}
+    {hero.xSpeed = -1;
+    gameArea.dir = '';
+    }
     if ((gameArea.keys && gameArea.keys[38] ) || gameArea.dir == "Up" )
-     {hero.ySpeed = -1;}
+     {hero.ySpeed = -1;
+        gameArea.dir = '';}
     if ((gameArea.keys && gameArea.keys[39] ) || gameArea.dir == "Right")
-     {hero.xSpeed = 1;}
+     {hero.xSpeed = 1;
+        gameArea.dir = '';}
     if ((gameArea.keys && gameArea.keys[40] ) || gameArea.dir == "Down")
-    {hero.ySpeed = 1;}
+    {hero.ySpeed = 1;
+        gameArea.dir = '';}
     
        
     bgImg.update();

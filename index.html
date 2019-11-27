@@ -7,17 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ARCADE :: LANDING</title> 
 </head>
-<body onload ='setup()'>
+<body onload ='setup()' >
    
     <canvas id = "screen">
         <style>
             #screen{
                 border: 1px solid black;
+                padding-top:3em;
                 /* background-color: beige; */
 
                 display:block;
                 /* margin-top:2em; */
                 margin:0 auto;
+            }
+            body{
+                background-color: black;
             }
         </style>
     </canvas>
@@ -25,13 +29,13 @@
     <!-- /*  controllers, can add to all pages */ -->
     
     <div class='buttons' id='buttons' >
-        <button id = 'upbtn'>up</button>
-        <button id = 'downbtn'>down</button>
-        <button id = 'leftbtn'>left</button>
-        <button id = 'rightbtn'>right</button>
+        <button id = 'upbtn'><img id = 'upRestImg' src="up_rest.png" height="30" width="30"></button>
+        <button id = 'leftbtn'><img id = 'leftRestImg' src="left_rest.png" height="30" width="30"></button>
+        <button id = 'downbtn'><img id = 'downRestImg' src="down_rest.png" height="30" width="30"></button>
+        <button id = 'rightbtn'><img id = 'rightRestImg' src="right_rest.png" height="30" width="30"></button>
         <style>
             .buttons{
-                padding: 2em;
+                padding: 3em;
                 display:block;
                 text-align: center;
                 margin: 0 auto;
