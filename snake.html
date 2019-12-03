@@ -10,24 +10,42 @@
 <body>
     
     <canvas id="gameScreen">
-        <style>
-            #gameScreen{
-                border: 1px solid black;
-                display:block;
-                margin:0 auto;
-            }
-        </style>
+       
         
     </canvas>
-    <div class ='score'>
-        <!-- <style>
-            .score{
-                display:block;
-                margin:0 auto;
-                
-            }
-        </style> -->
-    </div>
+    <div class = 'buttons'>
+        <button id = 'upbtn'><img id = 'upRestImg' src="up_rest.png" height="30" width="30"></button>
+        <button id = 'leftbtn'><img id = 'leftRestImg' src="left_rest.png" height="30" width="30"></button>
+        <button id = 'downbtn'><img id = 'downRestImg' src="down_rest.png" height="30" width="30"></button>
+        <button id = 'rightbtn'><img id = 'rightRestImg' src="right_rest.png" height="30" width="30"></button>
+       
+    
+    </div> 
+    <style>
+        #gameScreen{
+            border: 1px solid white;
+            display:block;
+            margin:0 auto;
+        }
+        body{
+            background-color: black;
+        }
+        
+        .buttons{
+            padding: 3em;
+            
+            display:block;
+            text-align: center;
+            /* margin: 0 auto; */
+        }
+        #upbtn{
+            border-bottom: 2em;
+            display:block;
+            text-align: center;
+            margin: 0 auto;
+        }
+    
+    </style>
     <script type = "text/javascript" src="objectSnake.js"></script>
     <script type = "text/javascript" src="fruit.js"></script>
     

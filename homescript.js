@@ -3,7 +3,7 @@ const HEIGHT = 450;
 // canvas.height = HEIGHT;
 // canvas.width = WIDTH;
 
-const scl = 10;
+const scl = 30;
 
 const gamesY = 145;
 const snakeCoor = {xmin:0, xmax:110};
@@ -41,8 +41,6 @@ function setup() {
     hero = new Hero();
     
 
-
-
 }
 
 var gameArea = {
@@ -54,23 +52,17 @@ var gameArea = {
         this.canvas.height = HEIGHT;
 
         this.ctx = this.canvas.getContext('2d');
-
-        // imgObj.onload = function(){
-        //     ctx.drawImage(imgObj,0,0);
-        // }
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]); //what is this for?
         this.interval = setInterval(updateScreen, 20);
-        // this.direction;
 
        this.dir = '';
        upBtn.addEventListener('click', function(){
-
+        
         // hero.ySpeed = -1;
         this.dir = 'Up';
         direction('Up');
         
         });
-
+        // hero = new Hero();
         downBtn.addEventListener('click', function(){
 
             // hero.ySpeed = 1;
@@ -93,15 +85,17 @@ var gameArea = {
         console.log (`dir is : ${this.dir}`); //QUESTION
 
 
-        window.addEventListener('keydown',function(event){
-            gameArea.keys = (gameArea.keys || []);
-            gameArea.keys[event.keyCode] = (event.type == 'keydown');
-        })
+        window.addEventListener('keydown', ((evt) => {
+            const direction = evt.key.replace('Arrow',''); //replace key event with up right left down
+            hero.changeDirection(direction);
+        
+        }))
+        window.addEventListener('keyup', ((evt) => {
+            const direction = evt.key.replace('Arrow',''); //replace key event with up right left down
+            hero.changeDirection(direction);
+        
+        }))
 
-        window.addEventListener('keyup',function(event){
-            gameArea.keys = (gameArea.keys || []);
-            gameArea.keys[event.keyCode] = (event.type == 'keydown');
-        })
     },
 
     clear : function(){
@@ -127,6 +121,31 @@ function Hero(){
     this.image.src = 'figuretest.png';
 
 
+
+    this.changeDirection = function(direction){
+        switch(direction){
+            case 'Up':
+                console.log('case up');
+                gameArea.dir = 'Up';
+                break;
+            case 'Down':
+                // this.xSpeed = 0;
+                // this.ySpeed = scl;
+                gameArea.dir = 'Down';
+                break;
+            case 'Left':
+                // this.xSpeed = -scl;
+                // this.ySpeed = 0;
+                gameArea.dir = 'Left';
+                break;
+            case 'Right':
+                gameArea.dir = 'Right';
+                break;
+        }
+    }
+
+
+
     this.update = function() {
         ctx = gameArea.ctx ;
         // ctx.fillStyle = "red";
@@ -150,18 +169,18 @@ function Hero(){
             
         }
         if(this.x < 0){
-            console.log("x<0");
+            // console.log("x<0");
             this.x = 0;
             
         }
         if(this.y >= HEIGHT){
-            console.log("further than height")
+            // console.log("further than height")
             this.y = HEIGHT-this.height;
             
             // this.checkCollisionCanvas();
         }
         if(this.y <= 0){
-            console.log("y<0");
+            // console.log("y<0");
             this.y = 0;
             // this.checkCollisionCanvas();
         }
@@ -174,11 +193,18 @@ function Hero(){
     /*
     function to activate events
     */
+   
+
    function activateEvents(address){
        
+        upBtn.addEventListener('click', function(evt){
+            if(gameArea.dir == 'Up'){
+                window.location = address;
+            }
+        })
            window.addEventListener('keydown', function(evt){
-            const upkey = evt.key.replace('Arrow','');
-            if (upkey == "Up" || gameArea.dir == "Up"){
+            // const upkey = evt.key.replace('Arrow','');
+            if (gameArea.dir == "Up"){
                 // window.location.pathname = '';
                 window.location = address;
             }
@@ -188,7 +214,7 @@ function Hero(){
 }
 function direction(dir){
     gameArea.dir = dir;
-    console.log(gameArea.dir);
+    // console.log(gameArea.dir);
 }
 
 
@@ -205,17 +231,17 @@ function updateScreen(){
     
     
     
-    if ((gameArea.keys && gameArea.keys[37]) || gameArea.dir == "Left")
+    if ( gameArea.dir == "Left")
     {hero.xSpeed = -1;
     gameArea.dir = '';
     }
-    if ((gameArea.keys && gameArea.keys[38] ) || gameArea.dir == "Up" )
+    if ( gameArea.dir == "Up" )
      {hero.ySpeed = -1;
         gameArea.dir = '';}
-    if ((gameArea.keys && gameArea.keys[39] ) || gameArea.dir == "Right")
+    if ( gameArea.dir == "Right")
      {hero.xSpeed = 1;
         gameArea.dir = '';}
-    if ((gameArea.keys && gameArea.keys[40] ) || gameArea.dir == "Down")
+    if (gameArea.dir == "Down")
     {hero.ySpeed = 1;
         gameArea.dir = '';}
     

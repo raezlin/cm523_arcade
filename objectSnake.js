@@ -95,6 +95,8 @@ function Snake() {
                 alert("GAME OVER");
                 document.location.reload();
                 clearInterval(interval);
+                
+                
 
                 // this.total=0;
                 // this.tail=[];
