@@ -21,6 +21,11 @@ var snake;
 var fruit;
 var score;
 
+var backBtn = document.getElementById('back');
+backBtn.addEventListener('click', function(){
+    window.location = './index.html';
+})
+
 function Score() {
     this.text =    `SCORE : `;
 
