@@ -16,10 +16,10 @@
     <!-- /*  controllers, can add to all pages */ -->
     
     <div class='buttons' id='buttons' >
-        <button id = 'upbtn'><img id = 'upRestImg' src="up_rest.png" height="30" width="30"></button>
-        <button id = 'leftbtn'><img id = 'leftRestImg' src="left_rest.png" height="30" width="30"></button>
-        <button id = 'downbtn'><img id = 'downRestImg' src="down_rest.png" height="30" width="30"></button>
-        <button id = 'rightbtn'><img id = 'rightRestImg' src="right_rest.png" height="30" width="30"></button>
+        <button id = 'upbtn' class='btn'><img id = 'upRestImg' src="up_rest.png" height="30" width="30"></button>
+        <button id = 'leftbtn' class='btn'><img id = 'leftRestImg' src="left_rest.png" height="30" width="30"></button>
+        <button id = 'downbtn' class='btn'><img id = 'downRestImg' src="down_rest.png" height="30" width="30"></button>
+        <button id = 'rightbtn' class='btn'><img id = 'rightRestImg' src="right_rest.png" height="30" width="30"></button>
 
     </div>
     <style>
@@ -40,13 +40,27 @@
             display:block;
             text-align: center;
             margin: 0 auto;
+            background-color:transparent;
+        }
+        .btn{
+            padding:2em;
+            border:none;
+            background-color:transparent;
         }
         #upbtn{
+            /* background-image: url('up_rest.png'); */
             display:block;
             text-align: center;
             margin: 0 auto;
         }
     </style>
     <script type = "text/javascript" src="homescript.js"></script>
+    <!-- <embed src="nigh.mp3" autostart="true" loop="true" hidden="false"> -->
+    <!-- <audio controls autoplay hidden='true' >
+          
+            <source src="nigh.mp3" type="audio/mpeg"loop="true" >
+        
+      
+        </audio> -->
 </body>
 </html>

@@ -34,7 +34,7 @@ function setup() {
     // document.body.style.backgroundSize = '450px 450px';
  
     // document.body.style.backgroundSize = `${WIDTH} ${HEIGHT}`;         DOES NOT WORK, EXCEEDED CANVAS SIZE
-   bgImg = new component("gameroom.jpg",0,0,'background');
+   bgImg = new component("image/gameroom2.jpg",0,0,'background');
     gameArea.start();
     
 
@@ -82,7 +82,7 @@ var gameArea = {
             direction('Right');
     
         });
-        console.log (`dir is : ${this.dir}`); //QUESTION
+        // console.log (`dir is : ${this.dir}`); //QUESTION
 
 
         window.addEventListener('keydown', ((evt) => {
@@ -118,7 +118,7 @@ function Hero(){
     this.y = HEIGHT/2;
 
     this.image = new Image();
-    this.image.src = 'figuretest.png';
+    this.image.src = 'image/figuretest.png';
 
 
 
@@ -261,7 +261,7 @@ function component(address, x, y, type) {
 
     
     this.image = new Image();
-    this.image.src = 'gameroom.jpg'
+    this.image.src = 'image/gameroom2.jpg'
     this.width = WIDTH;
     this.height = HEIGHT;   
     this.x = x;
