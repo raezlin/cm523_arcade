@@ -6,9 +6,11 @@ class WhackAMole {
 		this.scoreOut = scoreOut;
 		
 		// Game Images
-		this.moleImgSrc = 'https://res.michaelwhyte.ca/mole.png';
+		this.moleImgSrc = 'image/mole1.png';
+		// this.moleImgSrc = 'https://res.michaelwhyte.ca/mole.png';
 		this.moleBonkedImg = new Image();
-		this.moleBonkedImg.src = 'https://res.michaelwhyte.ca/mole-whacked.png';
+		// this.moleBonkedImg.src = 'https://res.michaelwhyte.ca/mole-whacked.png';
+		this.moleBonkedImg.src = 'image/mole2.png';
 		
 		// Game Parameters
 		this.gameTime = gameTimeLength;

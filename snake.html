@@ -6,26 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=500, initial-scale=0.7">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" 
+      type="image/png" 
+      href="image/favicon.png">
 </head>
 <body>
     <button id= 'back'>
-        back
+            <img id = 'backimg' src="image/exit.png" style="height:5%;" >
     </button>
     <canvas id="gameScreen">
        
         
     </canvas>
     <div class = 'buttons'>
-        <button id = 'upbtn'><img id = 'upRestImg' src="up_rest.png" height="30" width="30"></button>
-        <button id = 'leftbtn'><img id = 'leftRestImg' src="left_rest.png" height="30" width="30"></button>
-        <button id = 'downbtn'><img id = 'downRestImg' src="down_rest.png" height="30" width="30"></button>
-        <button id = 'rightbtn'><img id = 'rightRestImg' src="right_rest.png" height="30" width="30"></button>
+        <button id = 'upbtn' class='btn'><img id = 'upRestImg' src="image/up_rest.png" height="30" width="30"></button>
+        <button id = 'leftbtn' class='btn'><img id = 'leftRestImg' src="image/left_rest.png" height="30" width="30"></button>
+        <button id = 'downbtn' class='btn'><img id = 'downRestImg' src="image/down_rest.png" height="30" width="30"></button>
+        <button id = 'rightbtn' class='btn'><img id = 'rightRestImg' src="image/right_rest.png" height="30" width="30"></button>
        
     
     </div> 
     <style>
+        #back{
+            border: none;
+            background-color:transparent;
+            display: block;
+            text-align: center;
+            margin: 0 auto;
+        }
+        #backimg{
+            width: 50%;
+            height:50%;
+        }
+        /* #back{
+            display: block;
+            text-align: center;
+        } */
         #gameScreen{
-            border: 1px solid white;
+            /* border: 1px solid white; */
             display:block;
             margin:0 auto;
         }
@@ -40,6 +58,11 @@
             text-align: center;
             /* margin: 0 auto; */
         }
+        .btn{
+            padding:2em;
+            border:none;
+            background-color:transparent;
+        }
         #upbtn{
             border-bottom: 2em;
             display:block;
@@ -51,7 +74,7 @@
     <script type = "text/javascript" src="objectSnake.js"></script>
     <script type = "text/javascript" src="fruit.js"></script>
     
-    <script type = "text/javascript" src="score.js"></script>
+    <!-- <script type = "text/javascript" src="score.js"></script> -->
     <script type = "text/javascript" src="snake.js"></script>
     
 

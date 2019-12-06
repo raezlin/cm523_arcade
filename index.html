@@ -6,23 +6,73 @@
     <meta name="viewport" content="width=500, initial-scale=0.7">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ARCADE :: LANDING</title> 
+    <link rel="icon" 
+      type="image/png" 
+      href="image/favicon.png">
 </head>
 <body onload ='setup()' >
+   <!-- <audio src="nigh.mp3"></audio> -->
+   <!-- <iframe id="music" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="640" height="390" src="https://www.youtube.com/embed/?enablejsapi=1&amp;origin=https%3A%2F%2Fscmplayer.co&amp;widgetid=1"></iframe> -->
+   <!-- <iframe src="nigh.mp3" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
+   <!-- <iframe src="https://open.spotify.com/embed/playlist/0TsHgCCpifeNJg3d8z3Nfv" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
    
-    <canvas id = "screen">
-       
-    </canvas>
-
+   <!-- <a class='toggle-music'></a>
+   <audio class='music' src="nigh.mp3"></audio> -->
+   <canvas id = "screen" class='grid-fam'></canvas>
+   <!-- <div class='fam'>
+    <p class='grid-fam' id='grid-one'>lala</p>
+    
+        <p class='grid-fam' id='grid-three'> 111</p>
+</div> -->
     <!-- /*  controllers, can add to all pages */ -->
     
+    <div id='info' class='info'>
+        <p id='insert_info'></p>
+    </div>
     <div class='buttons' id='buttons' >
-        <button id = 'upbtn' class='btn'><img id = 'upRestImg' src="up_rest.png" height="30" width="30"></button>
-        <button id = 'leftbtn' class='btn'><img id = 'leftRestImg' src="left_rest.png" height="30" width="30"></button>
-        <button id = 'downbtn' class='btn'><img id = 'downRestImg' src="down_rest.png" height="30" width="30"></button>
-        <button id = 'rightbtn' class='btn'><img id = 'rightRestImg' src="right_rest.png" height="30" width="30"></button>
+        <button id = 'upbtn' class='btn'><img id = 'upRestImg' src="image/up_rest.png" height="30" width="30"></button>
+        <button id = 'leftbtn' class='btn'><img id = 'leftRestImg' src="image/left_rest.png" height="30" width="30"></button>
+        <button id = 'downbtn' class='btn'><img id = 'downRestImg' src="image/down_rest.png" height="30" width="30"></button>
+        <button id = 'rightbtn' class='btn'><img id = 'rightRestImg' src="image/right_rest.png" height="30" width="30"></button>
 
     </div>
     <style>
+        /* #music{
+            line-height: 1;
+            color: #333;
+            font-family: droid sans,Interstate,Helvetica,Arial,sans-serif;
+            width: 640px;
+            height: 390px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            outline-style: none;
+            font-size: 100%;
+            background: 0 0;
+            background-image: none;
+        } */
+        .fam{
+            display:flex;
+            justify-content: space-between;
+        }
+        p{
+            color:white;
+            display: block;
+            padding-top: 0.5em;
+            padding-bottom: -1em;
+            text-align: center;
+            
+        }
+        /* .toggle-music{
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            width: 3rem;
+            height: 3rem;
+            background: url('https://res.cloudinary.com/elliepoo h/image/upload/v1491889929/music_s7aiet.svg') center center / 70% no-repeat;
+            cursor: pointer;
+
+        } */
         #screen{
             border: 1px solid black;
             padding-top:3em;
@@ -36,7 +86,7 @@
             background-color: black;
         }
         .buttons{
-            padding: 3em;
+            padding: 2em;
             display:block;
             text-align: center;
             margin: 0 auto;
@@ -55,6 +105,7 @@
         }
     </style>
     <script type = "text/javascript" src="homescript.js"></script>
+    
     <!-- <embed src="nigh.mp3" autostart="true" loop="true" hidden="false"> -->
     <!-- <audio controls autoplay hidden='true' >
           

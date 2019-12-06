@@ -1,3 +1,11 @@
+/*
+QUESTIONS:
+- cannot cancel activateevent once the hero has walked up to the snake coordinate;
+
+*/
+//  
+
+
 const WIDTH = 450;
 const HEIGHT = 450;
 // canvas.height = HEIGHT;
@@ -13,6 +21,11 @@ const framesY = 105;
 const frame1 = {xmin:200, xmax:290};
 const frame2 = {xmin: 300, xmax:360};
 const frame3 = {xmin: 380, xmax:435};
+
+var infoP = document.getElementById('insert_info');
+var status = 'welcome';
+
+
 var upBtn = document.getElementById('upbtn');
         var downBtn = document.getElementById('downbtn');
         var leftBtn = document.getElementById('leftbtn');
@@ -27,14 +40,15 @@ var hero;
 var bgImg;
 
 
+var music = document.querySelector("#music");
+
+
 function setup() {
-    // document.body.style.backgroundImage = "url('gameroom.jpg')";
-    // document.body.style.backgroundRepeat = "no-repeat";
-    // document.body.style.backgroundPosition = "center";
-    // document.body.style.backgroundSize = '450px 450px';
+ 
+    
  
     // document.body.style.backgroundSize = `${WIDTH} ${HEIGHT}`;         DOES NOT WORK, EXCEEDED CANVAS SIZE
-   bgImg = new component("image/gameroom2.jpg",0,0,'background');
+   bgImg = new component("image/gameroom3.jpg",0,0,'background');
     gameArea.start();
     
 
@@ -108,8 +122,8 @@ function Hero(){
 
 
     //for now, place holder rect
-    this.width = 140/2;
-    this.height = 240/2;
+    this.width = 512/5;
+    this.height = 512/5;
     this.xSpeed = 0;
     this.ySpeed = 0;
 
@@ -118,7 +132,7 @@ function Hero(){
     this.y = HEIGHT/2;
 
     this.image = new Image();
-    this.image.src = 'image/figuretest.png';
+    this.image.src = 'image/hero.png';
 
 
 
@@ -155,12 +169,31 @@ function Hero(){
 
     this.newPos = function() {
         if(this.y <= gamesY && this.x <= snakeCoor.xmax ){
+            // infoP.innerHTML = "go up to play snake";
+            
             this.y = gamesY;
             activateEvents('./snake.html');
+            // upBtn.addEventListener('click', function(evt){
+            //     if(gameArea.dir == 'Up'){
+            //         activateEvents('./snake.html');
+            //     }
+            // })
+            // window.addEventListener('keydown', function(evt){
+            //     // const upkey = evt.key.replace('Arrow','');
+            //     if(gameArea.dir == 'Up'){
+            //         activateEvents('./snake.html');
+            //     }
+            //    })
+            // console.log(`gamedir is: ${gameArea.dir}`);
+            // activateEvents('./snake.html');
+            
+           
+            
         }
 
         if(this.y <= gamesY && (this.x >= wamCoor.xmin && this.x <= wamCoor.xmax)){
             this.y = gamesY;
+            
             activateEvents('./mole.html');
         }
         if (this.x > WIDTH){
@@ -204,6 +237,7 @@ function Hero(){
         })
            window.addEventListener('keydown', function(evt){
             // const upkey = evt.key.replace('Arrow','');
+            // window.location = address;
             if (gameArea.dir == "Up"){
                 // window.location.pathname = '';
                 window.location = address;
@@ -247,6 +281,9 @@ function updateScreen(){
     
        
     bgImg.update();
+    
+    infoP.innerHTML = status;
+
     hero.newPos();
     hero.update();
     // hero.activateEvents();
@@ -261,7 +298,7 @@ function component(address, x, y, type) {
 
     
     this.image = new Image();
-    this.image.src = 'image/gameroom2.jpg'
+    this.image.src = 'image/gameroom3.jpg'
     this.width = WIDTH;
     this.height = HEIGHT;   
     this.x = x;
