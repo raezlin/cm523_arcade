@@ -1,9 +1,7 @@
 var canvas = document.getElementById('gameScreen');
-var ctx = canvas.getContext("2d"); //check usability
+var ctx = canvas.getContext("2d"); 
 
-//testing adding another ctx for fruit
-//did not work
-// const fruit_ctx = canvas.getContext('2d'); 
+
 const WIDTH = 450;
 const HEIGHT = 450;
 canvas.height = HEIGHT;
@@ -22,12 +20,32 @@ var snake;
 var fruit;
 var score;
 
+var interval = 120;
+
 var bgimg;
+var resume;
+var gameover;
+var is_gameover = false;
+
+var playing = false;
+
+
+
+function eventImg(img){
+    this.x = 0;
+    this.y = 0;
+    this.image = new Image();
+    this.image.src = img;
+    this.draw = function(){
+        ctx.drawImage(this.image, this.x, this.y, WIDTH, HEIGHT);
+    }
+}
 
 var backBtn = document.getElementById('back');
 backBtn.addEventListener('click', function(){
     window.location = './index.html';
 })
+
 
 function Score() {
     this.text =    `SCORE : `;
@@ -46,47 +64,90 @@ function Score() {
     }
     
 }
+var trywindow;
 
-(function setup() {
+function setup() {
     snake = new Snake();
     fruit = new Fruit();
     score = new Score();
+    resume = new eventImg('image/snake_paused.jpg');
+    // pause = new Pause_resume();
 
     bgimg = new component('snakebg.jpg',0,0,'background');
+    gameover = new eventImg('image/snake_gameover.jpg');
 
     fruit.pickLocation();
     snake.draw();
+    score.draw(); // pause.draw();
+    
+    // resume.image.style.display ='none';
+
+   
+ trywindow = setInterval(run, interval);
+canvas.addEventListener('click',function(){
+    console.log(`canvas clicked`);
+    console.log(`${is_gameover}`);
+    
+    if(playing){
+        playing = false;
+
+        resume.draw();
+        // bgimg.image.src = 'image/snake_paused.jpg';
+        resume.image.style.display = 'block';
+        clearInterval(trywindow);
+        
+
+    }
+    else if(!playing){
+        playing = true;
+        // bgimg.draw();
+        trywindow = setInterval(run, interval);
+        // bgimg.image.src = 'image/snakebg.jpg';
+    }
+    // interval = 150;
+
+    
+})
+
+
+
+}; //why () over the function
+
+function run(){
+    if(!is_gameover){
+        // console.log('inside run');
+        playing = true;
+    ctx.clearRect(0,0, canvas.width, canvas.height);
+    // ctx.fillStyle = '#00f';
+    bgimg.update();
+    // pause.draw();
+    fruit.draw();
     score.draw();
 
-    window.setInterval(() => {
-    
-        ctx.clearRect(0,0, canvas.width, canvas.height);
-        // ctx.fillStyle = '#00f';
-        bgimg.update();
-        fruit.draw();
-        score.draw();
-        snake.update();
-        snake.draw();
-        // bgimg.update();
-        
+
+
  
 
-        if (snake.eat(fruit)){
-            fruit.pickLocation();
-            fruit.draw();
-            score.draw();
-        }
-
-        if (snake.checkCollision ()){
-            console.log('colliding with body');
-        }
-
-//update bg
-        
+    snake.update();
+    snake.draw();
+    // bgimg.update();
+    
 
 
-    }, 120)
-}()); //why () over the function
+    if (snake.eat(fruit)){
+        fruit.pickLocation();
+        fruit.draw();
+        score.draw();
+    }
+
+    if (snake.checkCollision ()){
+        console.log('colliding with body');
+    }
+    }
+   
+    
+    
+}
 
 function component(address, x, y, type) {
     // this.type = type;
@@ -109,6 +170,13 @@ function component(address, x, y, type) {
     }
      
 }
+
+// var is_gameover = function(){
+//     canvas.addEventListener('click',function(){
+//         document.location.reload();
+//        clearInterval(interval);
+//     })
+// }
 
 upBtn.addEventListener('click', function(){
     snake.changeDirection('Up');
@@ -145,3 +213,4 @@ function component(address, x, y, type) {
     }
      
 }
+

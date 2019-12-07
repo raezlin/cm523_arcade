@@ -10,12 +10,12 @@
       type="image/png" 
       href="image/favicon.png">
 </head>
-<body>
+<body onload="setup()">
     <button id= 'back'>
             <img id = 'backimg' src="image/exit.png" style="height:5%;" >
     </button>
     <canvas id="gameScreen">
-       
+    
         
     </canvas>
     <div class = 'buttons'>
@@ -27,6 +27,7 @@
     
     </div> 
     <style>
+        
         #back{
             border: none;
             background-color:transparent;

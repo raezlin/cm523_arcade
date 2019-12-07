@@ -26,6 +26,7 @@ function Snake() {
 
     this.update = function() {
 //update when eat fruit
+
         for (let i = 0; i<this.tail.length - 1; i++){
             this.tail[i] = this.tail[i+1];
         }
@@ -33,7 +34,7 @@ function Snake() {
         this.tail[this.total - 1] = {x: this.x, y:this.y};
 
 
-
+     
         this.x += this.xSpeed;
         this.y += this.ySpeed;
 
@@ -80,12 +81,27 @@ function Snake() {
         }
     }
     this.checkCollisionCanvas = function(){
+        
+        // is_gameover = true;
+        
+        
         // console.log('y is : ${this.y}');
         // console.log('x is : ${this.x}');
+    //    gameover.draw();
+    //    Gameover();
+    //    clearInterval(trywindow);
+
+        // canvas.addEventListener('click',function(){
+        //     window.reload();
+        // })
+
+
+       document.location.reload();
+       clearInterval(interval);
+
        
-        alert("GAME OVER");
-        document.location.reload();
-        clearInterval(interval);
+        // document.location.reload();
+        // clearInterval(interval);
     
 } 
     this.checkCollision = function() {
