@@ -1,4 +1,13 @@
 //snake object oriented js
+function gg(){
+    this.x = 0;
+    this.y = 0;
+    this.image = new Image();
+    this.image.src = 'image/snake_gameover.jpg';
+    this.draw = function(){
+        ctx.drawImage(this.image, this.x, this.y, 450, 450);
+    }
+}
 function Snake() {
     this.x = 0;
     this.y = 0;
@@ -42,7 +51,18 @@ function Snake() {
         //add boundary to snake activity, gameover
         if (this.x > canvas.width){
             this.x = 0;
+            // bgImg.draw();
+            // bgImg.image.src = ''
+            // let ggImg = new gg();
+            // ggImg.draw();
             this.checkCollisionCanvas();
+            // clearInterval(interval);
+            
+            // canvas.addEventListener('click',function(){
+            //     document.location.reload();
+       
+            // })
+            // this.checkCollisionCanvas();
         }
         if(this.x < 0){
             this.x = canvas.width;
@@ -56,6 +76,9 @@ function Snake() {
             this.y = canvas.height;
             this.checkCollisionCanvas();
         }
+
+        //try try apply here
+        
 
 
     }
@@ -81,43 +104,30 @@ function Snake() {
         }
     }
     this.checkCollisionCanvas = function(){
-        
-        // is_gameover = true;
-        
-        
-        // console.log('y is : ${this.y}');
-        // console.log('x is : ${this.x}');
-    //    gameover.draw();
-    //    Gameover();
-    //    clearInterval(trywindow);
-
-        // canvas.addEventListener('click',function(){
-        //     window.reload();
-        // })
-
-
-       document.location.reload();
-       clearInterval(interval);
-
        
-        // document.location.reload();
-        // clearInterval(interval);
+
+
+        is_gameover = true;
+        return;
+    
     
 } 
     this.checkCollision = function() {
         
         for (var i = 0; i<this.tail.length;i++){
             if (this.x === this.tail[i].x && this.y === this.tail[i].y) {
-                alert("GAME OVER");
+                alert("careful! don't run into yourself");
                 document.location.reload();
                 clearInterval(interval);
-                
-                
+                // ABOVE WORKING
 
-                // this.total=0;
-                // this.tail=[];
+
             }
+            
+            
         }
+        
+
     }
 
 

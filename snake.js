@@ -84,6 +84,17 @@ function setup() {
 
    
  trywindow = setInterval(run, interval);
+
+// function over(){
+//     console.log('yay');
+//      if(snake.checkCollisionCanvas()){
+         
+//         clearInterval(interval);
+//         gameover.draw();
+//      }
+    
+//  }
+
 canvas.addEventListener('click',function(){
     console.log(`canvas clicked`);
     console.log(`${is_gameover}`);
@@ -114,6 +125,7 @@ canvas.addEventListener('click',function(){
 }; //why () over the function
 
 function run(){
+    playing = true;
     if(!is_gameover){
         // console.log('inside run');
         playing = true;
@@ -125,25 +137,46 @@ function run(){
     score.draw();
 
 
-
+    
  
 
     snake.update();
     snake.draw();
     // bgimg.update();
     
+    if(is_gameover){
+        // clearInterval(interval);
+        
+        gameover.draw();
+        gameover.image.style.display = 'block';
+        // playing = 'true';
+        
+        canvas.addEventListener('click',function(){
+            is_gameover = 'false';
+            playing = 'true';
+            clearInterval(interval);
+            document.location.reload();
+        })
 
+    }
 
     if (snake.eat(fruit)){
         fruit.pickLocation();
         fruit.draw();
         score.draw();
     }
+    // if(snake.checkCollisionCanvas()){
+    //     console.log('yay');
+    //     // clearInterval(trywindow);
+    //     // gameover.draw();
+
+    // }
 
     if (snake.checkCollision ()){
         console.log('colliding with body');
     }
     }
+    
    
     
     

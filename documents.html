@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ARCADE::DOCUMENTS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=500, initial-scale=0.7">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" 
+      type="image/png" 
+      href="image/favicon.png">
+    <!-- <img class="logo" src="image/logo2.png"> -->
+</head>
+<body>
+        <button id= 'back'>
+                <img id = 'backimg' src="image/exit.png" style="height:5%;" >
+        </button>    
+    <img class="logo" src="image/logo2.png">
+        
+        <script>
+            var backBtn = document.getElementById('back');
+            backBtn.addEventListener('click',function(){
+                window.location = './index.html';
+            })
+        </script>
+    <h1>About After Hours 24</h1>
+    <p>Our mission is for people to have fun and enjoy the 80s vibe online. The website
+            is an alternative way to play traditional arcade games online. Instead of a website that
+            provides a list of game selections, we aim to create an environment that allows users to
+            move around as a character and feel like they are in a game right after they enter the
+            site by giving the website a design of an arcade room in pixel art.</p>
+    <div class="documents">
+        <a href="https://drive.google.com/file/d/1Ie3yfpaQqMSpM40213vW6JxNv7hBJc1S/view?usp=sharing">Proposal</a>
+        <a href="https://drive.google.com/drive/folders/1i75x7mfEHlLJlCBsjiyAhf8MhWA9G1j4?usp=sharing">Wireframes</a>
+        <a href="https://drive.google.com/file/d/1uEqhnh29Poz7WHPOwNxQmL2JZ71hvdoz/view?usp=sharing">UX Reports</a>
+    </div>
+
+
+
+
+
+<style>
+    @import url("https://fonts.googleapis.com/css?family=VT323");
+            
+            ::selection {color:#FFFFFF; background:transparent;}
+            ::-moz-selection {color:#FFFFFF; background:transparent;}
+            
+            *{
+                margin: 0;
+                padding: 0;
+                font-family: "VT323";
+            }
+
+    .logo{
+        height:50%;
+        width:50%;
+        margin-left: 25%;
+    }
+
+    body{
+        background-color:black;
+        font-family: VT323;
+        color: white;
+    }
+
+    h1{
+        text-align:center;
+        margin-top:30px;
+    }
+
+    p{
+        margin-left:30px;
+        margin-right:30px;
+        margin-top:30px;
+        font-size:25px;
+    }
+
+    .documents{
+        display:grid;
+        margin-top: 50px;
+        text-align:center;
+        justify-content: center;
+        font-size:40px;
+        grid-template-columns: 400px;
+        grid-template-rows: 100px 100px 100px;
+        color:white;
+    }
+
+#back{
+            border: none;
+            background-color:transparent;
+            display: block;
+            text-align: center;
+            /* border-top:2em; */
+            margin: 0 auto;
+            margin-top: 5%;
+        }
+        #backimg{
+            width: 50%;
+            height:50%;
+        }
+
+</style>
+
+</body>
+</html>

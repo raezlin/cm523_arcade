@@ -12,6 +12,14 @@ const wamCoor = {xmin:90, xmax:150};
 const tableY = {ymin:225, ymax:345};
 const tableX = {xmin:170,xmax:370, xedge:130};
 
+const docsX = {xmin:230, xmax:310};
+const docsY = 205;
+
+
+
+const speechY = {game:205,rack:165,table:205};
+
+
 const clothes = ['image/hero2.png','image/hero3.png','image/hero.png'];
 var changedClothes =[];
 var clothes_count = 0;
@@ -36,17 +44,44 @@ var bgImg;
 
 var pressedbtn = [];
 
-
-
+var playBtn = document.getElementById('audioPlay');
+var myAud = document.getElementsByClassName('aud');
+var music = new Audio('nigh.mp3');
 function setup() {
- 
- 
+    // var aud = document.getElementsByClassName(aud);
+    // aud.play();
    bgImg = new component("image/gameroom4.jpg",0,0,'background');
     gameArea.start();
+    var music_playing = false;
+    
+    playBtn.addEventListener('click',function(){
+        // music.preload;
+//   music.pause();
+
+        if (music.paused){
+            
+            music.play();}
+        else{
+            music.pause();
+        }
+  
+    })
+
 
     hero = new Hero();
     
 
+}
+function is_music_playing(){
+    if(!music_playing){
+        music_playing = true;
+        return false;
+    }
+    else if(music_playing){
+        music_playing = false;
+        return true;
+    }
+    return;
 }
 
 var gameArea = {
@@ -160,6 +195,17 @@ function Hero(){
     }
 
     this.newPos = function() {
+        if(this.y <= speechY.game && this.x<= snakeCoor.xmax){
+            status = 'wanna play snake? walk up!';
+        }
+        if(this.y <= speechY.game && (this.x >= wamCoor.xmin && this.x <= wamCoor.xmax)){
+            status = 'or whack a mole? walk up!';
+        }
+        if(this.y <= speechY.rack && (this.x >= rackX.xmin && this.x <= rackX.xmax)){
+            status = 'hi rack, wassup';
+        }
+       
+        
         if(this.y <= gamesY && this.x <= snakeCoor.xmax ){
           
             this.y = gamesY;
@@ -187,13 +233,22 @@ function Hero(){
             this.y = tableY.ymin;
             if(pressedbtn.pop()=='Down'){
                 pressedbtn=[];
-                window.location ='./docs.html';
+                window.location ='./documents.html';
             }
 
 
         }
+        if(this.x >= (tableX.xedge) && (this.y >= tableY.ymin && this.y <= tableY.ymax)){
+            this.x = tableX.xedge;
+            status = `plant says ouch`;
+        }
+        if(this.y >= 205 && (this.x >= docsX.xmin && this.x <= docsX.xmax)){
+            status = 'a pile of papers...';
+        }
+        
          if (this.y <= rackY && (this.x >= rackX.xmin && this.x <= rackX.xmax)){
             this.y = rackY;
+            
             if(pressedbtn.pop()=='Up'){
                 pressedbtn=[];
                 hero.image.src = clothes[clothes_count];
@@ -208,7 +263,7 @@ function Hero(){
         }
 
          if (this.x > WIDTH){
-      
+            // status='over';
             this.x = WIDTH-this.width;
             
         }

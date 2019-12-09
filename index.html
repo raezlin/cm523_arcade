@@ -11,11 +11,14 @@
       href="image/favicon.png">
 </head>
 <body onload ='setup()' >
-   <!-- <audio src="nigh.mp3"></audio> -->
-   <!-- <iframe id="music" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="640" height="390" src="https://www.youtube.com/embed/?enablejsapi=1&amp;origin=https%3A%2F%2Fscmplayer.co&amp;widgetid=1"></iframe> -->
-   <!-- <iframe src="nigh.mp3" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
-   <!-- <iframe src="https://open.spotify.com/embed/playlist/0TsHgCCpifeNJg3d8z3Nfv" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
+    <button id='audioPlay'></button>
+    <!-- <audio class = 'aud' loop="" >
+
+        <source src="nigh.mp3" type="audio/mpeg"></source>
+              Your browser does not support the audio element.
+              </audio> -->
    
+  
    <!-- <a class='toggle-music'></a>
    <audio class='music' src="nigh.mp3"></audio> -->
    <canvas id = "screen" class='grid-fam'></canvas>
@@ -37,20 +40,47 @@
 
     </div>
     <style>
-        /* #music{
-            line-height: 1;
-            color: #333;
-            font-family: droid sans,Interstate,Helvetica,Arial,sans-serif;
-            width: 640px;
-            height: 390px;
-            margin: 0;
-            padding: 0;
+        audio::-webkit-media-controls-play-button{
+            display: block;
+            
+            background-color: brown;
+        }
+        
+        
+       
+        audio{
+            /* width: 50px; */
+            
+            /* audio::-webkit-media-controls-current-time-display=none;
+            audio::-webkit-media-controls-time-remaining-display=none; */
+            width:150px;
+            background-color: blue;
+           
+            
+        }
+        #audioPlay{
+            justify-content:center ;
+           
+            position:absolute;
+            margin: 0 auto;
+            border-right: 1em;
+            background-image: url('image/playBtn.png');
+            background-color: transparent;
             border: none;
-            outline-style: none;
-            font-size: 100%;
-            background: 0 0;
-            background-image: none;
-        } */
+            background-size: contain ;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-top:10px;
+            padding-top: 1em;
+            margin-left:10px;
+            padding: 1em;
+            /* width: 20px; */
+            
+        }
+        #audioPlay:hover{
+            cursor: pointer;
+        }
+       
         .fam{
             display:flex;
             justify-content: space-between;
@@ -61,6 +91,8 @@
             padding-top: 0.5em;
             padding-bottom: -1em;
             text-align: center;
+            font-family: monospace;
+            font-size:1em;
             
         }
         /* .toggle-music{
@@ -93,7 +125,7 @@
             background-color:transparent;
         }
         .btn{
-            padding:2em;
+            padding:1em;
             border:none;
             background-color:transparent;
         }
