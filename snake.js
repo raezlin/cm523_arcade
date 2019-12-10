@@ -20,7 +20,7 @@ var snake;
 var fruit;
 var score;
 
-var interval = 120;
+var interval = 140;
 
 var bgimg;
 var resume;

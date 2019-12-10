@@ -9,6 +9,8 @@ const gamesY = 145;
 const snakeCoor = {xmin:0, xmax:40};
 const wamCoor = {xmin:90, xmax:150};
 
+const boothX = {xmin:210, xmax:270};
+
 const tableY = {ymin:225, ymax:345};
 const tableX = {xmin:170,xmax:370, xedge:130};
 
@@ -17,7 +19,7 @@ const docsY = 205;
 
 
 
-const speechY = {game:205,rack:165,table:205};
+const speechY = {game:205,rack:165,table:205,booth:175};
 
 
 const clothes = ['image/hero2.png','image/hero3.png','image/hero.png'];
@@ -28,7 +30,7 @@ var clothes_count = 0;
 const rackY = 105;
 const rackX = {xmin: 330, xmax:350};
 
-
+// var heroFlipped = 'image/hero_flip.png';
 
 var infoP = document.getElementById('insert_info');
 var status = 'welcome';
@@ -46,7 +48,7 @@ var pressedbtn = [];
 
 var playBtn = document.getElementById('audioPlay');
 var myAud = document.getElementsByClassName('aud');
-var music = new Audio('nigh.mp3');
+var music = new Audio('joji.mp3');
 function setup() {
     // var aud = document.getElementsByClassName(aud);
     // aud.play();
@@ -121,6 +123,7 @@ var gameArea = {
         } );
         rightBtn.addEventListener('click', function(){
 
+            
           
             // this.dir = 'Right';
             direction('Right');
@@ -189,7 +192,7 @@ function Hero(){
 
     this.update = function() {
         ctx = gameArea.ctx ;
-     
+        
      
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
@@ -204,6 +207,10 @@ function Hero(){
         if(this.y <= speechY.rack && (this.x >= rackX.xmin && this.x <= rackX.xmax)){
             status = 'hi rack, wassup';
         }
+        if(this.y <= speechY.booth && (this.x >= boothX.xmin && this.x <= boothX.xmax)){
+            status =`wow! fancy computer user exclusive photobooth! (aka not mobile friendly)`;
+        }
+        
        
         
         if(this.y <= gamesY && this.x <= snakeCoor.xmax ){
@@ -227,6 +234,13 @@ function Hero(){
             }
             // activateEvents('./mole.html');
             
+        }
+        if(this.y <= gamesY && (this.x >= boothX.xmin && this.x <= boothX.xmax)){
+            this.y = gamesY;
+            if(pressedbtn.pop()=='Up'){
+                pressedbtn=[];
+                window.location = './working-photobooth/src/index.html';
+            }
         }
         // || this.x >= tableX.xedge && (this.y >= tableY.ymin && this.y <= tableY.ymax)
          if((this.y >= tableY.ymin && this.y <= tableY.ymax) && (this.x >= tableX.xmin && this.x <= tableX.xmax)){

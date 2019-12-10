@@ -19,7 +19,7 @@ function Snake() {
 
     this.draw = function(){
 //body of the snake
-        ctx.fillStyle = "#ff0000";
+        ctx.fillStyle = 'white';
 
         // tail.array.forEach(element => {
         //     ctx.fillRect(this.x, this.y, scl, scl/2);

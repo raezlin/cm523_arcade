@@ -15,7 +15,7 @@ function Fruit() {
         // console.log(fruit);
     }
     this.draw = function() {
-        ctx.fillStyle = fruitColor;
+        ctx.fillStyle = "#"+((1<<24)*Math.random()|0).toString(16);
         ctx.fillRect(this.x,this.y, scl, scl);
         
         
