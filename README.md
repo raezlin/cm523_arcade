@@ -1,7 +1,10 @@
 # cm523_arcade
 virtual arcade room
 
+
+*performance not guaranteed on browsers other than chrome*
 EITHER  https://afterhours-24.web.app/  OR  https://afterhours-24.firebaseapp.com/ 
+
 
 local landing page: index.html
 
