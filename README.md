@@ -9,7 +9,10 @@ features:
 1. user able to control hero to activate different events
 2. includes two classic arcade game: snake & whack a mole
 3. able to change hero's clothes
-3. incoming features: photobooth, accessing documents,background music
+4. access documents
+5. background music
+6. status update
+7. incoming features: photobooth
 
 progress:
 * updated fruit color
@@ -20,5 +23,7 @@ progress:
 * added favicon and logo
 * added pause function for snake game
 * fixed hero homescreen activating events
-* working on gameover page for snake
+* added gameover and pause screen for snake
+* added background music
+* working on photobooth
 
